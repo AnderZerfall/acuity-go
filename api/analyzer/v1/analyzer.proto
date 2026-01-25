@@ -1,0 +1,17 @@
+syntax = "proto3";
+package analyzer.v1;
+option go_package = "Acuity/gen/api/analyzer/v1;analyzer";
+import "api/social_network/v1/social_network.proto";
+
+service AnalyzerService {
+    rpc AnalyzePost(AnalyzePostRequest) returns (AnalyzePostResponse);
+}
+
+message AnalyzePostRequest {
+    social_network.v1.Post post = 1;
+}
+
+message AnalyzePostResponse {
+    float trust_coefficient = 1;
+    repeated string details = 2;
+}

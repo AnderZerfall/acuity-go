@@ -1,0 +1,41 @@
+syntax = "proto3";
+package social_network.v1;
+option go_package = "Acuity/gen/api/social_network/v1;social_network";
+import "google/protobuf/timestamp.proto";
+
+message Post {
+    Source source = 1;
+    string content = 2;
+    string url = 3;
+    google.protobuf.Timestamp date = 4;
+    User author = 5;
+    repeated Media attachments = 6;
+    Stats stats = 7;
+}
+
+enum Source {
+    SOURCE_UNSPECIFIED = 0;
+    SOURCE_X_TWITTER = 1;
+    SOURCE_FACEBOOK = 2;
+    SOURCE_TELEGRAM = 3;
+}
+
+message Media {
+    string file_name = 1;
+    string url = 2;
+    string mime_type = 3;
+}
+
+message User {
+    string username = 1;
+    string display_name = 2;
+    google.protobuf.Timestamp registration_date = 3;
+    string url = 4;
+}
+
+message Stats {
+    int64 likes = 1;
+    int64 comments = 2;
+    int64 views = 3;
+}
+
