@@ -3,8 +3,18 @@ module Acuity
 go 1.25.6
 
 require (
-	github.com/joho/godotenv v1.5.1
 	github.com/labstack/echo/v4 v4.15.0
+	github.com/nlpodyssey/cybertron v0.2.1
+)
+
+require (
+	github.com/dlclark/regexp2 v1.4.0 // indirect
+	github.com/google/flatbuffers v23.5.26+incompatible // indirect
+	github.com/nlpodyssey/gopickle v0.2.0 // indirect
+	github.com/nlpodyssey/gotokenizers v0.2.0 // indirect
+	github.com/nlpodyssey/spago v1.1.0 // indirect
+	github.com/rs/zerolog v1.31.0 // indirect
+	golang.org/x/sync v0.19.0 // indirect
 )
 
 require (

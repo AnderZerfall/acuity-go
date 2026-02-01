@@ -3,6 +3,7 @@ package main
 import (
 	"Acuity/gen/api/analyzer/v1/analyzerconnect"
 	"Acuity/internal/analyzer"
+	"Acuity/internal/text-analyzer/features"
 	"context"
 	"fmt"
 	"log"
@@ -48,6 +49,8 @@ func main() {
 		Addr:    ":8080",
 		Handler: e,
 	}
+
+	features.RunLanguageModel()
 
 	done := make(chan bool, 1)
 
