@@ -1,0 +1,70 @@
+// URLInput.module.scss
+@use '../../../variables.scss' as variables;
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+  margin-bottom: 12px;
+
+  .label {
+    font-weight: 400;
+  }
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    input {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      border: 1.75px solid variables.$border-color;
+      background: variables.$slate-color;
+      outline: none;
+
+      &::placeholder {
+        color: rgba(white, 0.2);
+      }
+
+      &:focus {
+        filter: brightness(1.2);
+      }
+    }
+  }
+
+  // Error State Modifier
+  &.hasError {
+    .wrapper::before {
+      background: variables.$alert-color;
+    }
+    input {
+      border-color: rgba(variables.$alert-color, 0.5);
+      &:focus {
+        border-color: variables.$alert-color;
+      }
+    }
+  }
+
+  .errorMessage {
+    height: 1.25rem;
+    margin-left: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: variables.$alert-color;
+    animation: fadeIn 0.2s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

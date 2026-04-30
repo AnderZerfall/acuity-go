@@ -1,0 +1,57 @@
+{
+  "name": "acuity-fe",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/acuity-fe/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/acuity-fe",
+        "configFile": "apps/acuity-fe/vite.config.mts",
+        "assets": [
+          {
+            "glob": "manifest.json",
+            "input": "apps/acuity-fe",
+            "output": "."
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/acuity-fe/public",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "options": {
+        "buildTarget": "acuity-fe:build",
+        "hmr": true,
+        "force": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "acuity-fe:build:development",
+          "watch": true
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vitest:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "../../coverage/apps/acuity-fe"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/acuity-fe/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  }
+}

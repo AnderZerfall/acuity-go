@@ -1,0 +1,30 @@
+@use 'variables';
+
+* {
+  font-size: 0.9rem;
+  font-family: "Poppins", sans-serif;
+   color: rgba(white, 0.8);
+}
+
+*,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+overflow-x: hidden;
+  background-image: linear-gradient(
+    variables.$bg-second-color,
+    variables.$bg-first-color
+  );
+    width: variables.$window-width;
+  height: variables.$window-height;
+}
+
+#root {
+width: 100%;
+  height: 100%;
+}

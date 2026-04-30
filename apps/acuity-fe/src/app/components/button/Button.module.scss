@@ -1,0 +1,42 @@
+@use '../../../variables.scss' as variables;
+@use "sass:color";
+
+.root {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: variables.$gradient-linear;
+  border: 1.75px solid variables.$border-color;
+  border-radius: 0.5rem;
+  color: variables.$accent-color;
+  padding: 1rem;
+  width: 100%;
+  transform: scale(1);
+  transition: all 300ms ease;
+
+  &:hover {
+    transform: scale(1.02);
+    color: variables.$bg-first-color;
+    border-color: variables.$accent-color;
+    background: variables.$accent-color;
+    box-shadow: 0 0 15px variables.$accent-glow-color;
+  }
+
+   &:active {
+    transform: scale(0.99);
+    background: color.adjust(variables.$accent-color, $lightness: -5%);
+  }
+}
+
+.loading {
+  &, &:active, &:hover {
+      color: variables.$loading-color;
+    cursor: wait;
+      border: 1px solid variables.$border-color;
+       background: variables.$gradient-linear;
+     transform: scale(1);
+     box-shadow: none;
+  }
+}
