@@ -20,7 +20,7 @@ func (service *AnalyzeServiceServer) AnalyzePost(ctx context.Context,
 	post := req.Msg.GetPost()
 	_ = post
 
-	result, err := service.Analyzer.Analyze(ctx, post.Content)
+	result, err := service.Analyzer.Analyze(ctx, post)
 
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)

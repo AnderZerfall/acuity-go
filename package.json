@@ -11,15 +11,16 @@
     "@crxjs/vite-plugin": "^2.0.0-beta.33",
     "@eslint/js": "^9.8.0",
     "@nx-go/nx-go": "^3.3.1",
-    "@nx/eslint": "22.6.1",
-    "@nx/eslint-plugin": "22.6.1",
+    "@nx/eslint": "^22.7.2",
+    "@nx/eslint-plugin": "^22.7.2",
     "@nx/js": "22.6.1",
     "@nx/linter": "^19.8.4",
     "@nx/react": "^22.6.1",
     "@nx/vite": "^22.6.1",
-    "@nx/vitest": "22.6.1",
-    "@nx/web": "22.6.1",
+    "@nx/vitest": "^22.7.2",
+    "@nx/web": "^22.7.2",
     "@nx/workspace": "22.6.1",
+    "@nxlv/python": "^22.1.4",
     "@swc-node/register": "~1.11.1",
     "@swc/cli": "^0.8.0",
     "@swc/core": "^1.15.18",
@@ -66,6 +67,8 @@
   },
   "overrides": {
     "minimatch": "^9.0.5",
-    "rollup": "^4.22.4"
+    "rollup": "^4.22.4",
+    "picomatch": "^4.0.4",
+    "yaml": "^2.8.3"
   }
 }

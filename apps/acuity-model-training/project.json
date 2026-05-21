@@ -1,0 +1,60 @@
+{
+  "name": "acuity-model-training",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/acuity-model-training/src",
+  "targets": {
+    "train:emotion": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/apps/acuity-be/external/emotion-analysis"],
+      "options": {
+        "command": "poetry run python src/nlp.training.py --output_dir=../../apps/acuity-be/external/emotional-analysis",
+        "cwd": "apps/acuity-model-training"
+      },
+      "dependsOn": ["install"]
+    },
+    "train:statement": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/apps/acuity-be/external/short-statement"],
+      "options": {
+        "command": "poetry run python src/statement.training.py --output_dir=../../apps/acuity-be/external/statement",
+        "cwd": "apps/acuity-model-training"
+      },
+      "dependsOn": ["install"]
+    },
+    "export:cybertron": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx train:emotion acuity-model-training",
+          "nx train:statement acuity-model-training"
+        ],
+        "parallel": true
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": ["{workspaceRoot}/reports/{projectRoot}/pylint.txt"],
+      "options": {
+        "outputFile": "reports/{projectRoot}/pylint.txt"
+      },
+      "cache": true
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    }
+  },
+  "tags": [],
+  "release": {
+    "version": {
+      "versionActions": "@nxlv/python/release/version-actions"
+    }
+  }
+}
