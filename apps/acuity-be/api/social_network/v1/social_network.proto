@@ -11,13 +11,15 @@ message Post {
     User author = 5;
     repeated Media attachments = 6;
     Stats stats = 7;
+    string title = 8;
 }
 
 enum Source {
     SOURCE_UNSPECIFIED = 0;
     SOURCE_X_TWITTER = 1;
-    SOURCE_FACEBOOK = 2;
-    SOURCE_TELEGRAM = 3;
+    SOURCE_FACEBOOK = 2; // unsupported
+    SOURCE_TELEGRAM = 3; // unsupported
+    SOURCE_REDDIT = 4;
 }
 
 message Media {

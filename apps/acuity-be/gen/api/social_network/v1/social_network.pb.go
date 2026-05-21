@@ -27,8 +27,9 @@ type Source int32
 const (
 	Source_SOURCE_UNSPECIFIED Source = 0
 	Source_SOURCE_X_TWITTER   Source = 1
-	Source_SOURCE_FACEBOOK    Source = 2
-	Source_SOURCE_TELEGRAM    Source = 3
+	Source_SOURCE_FACEBOOK    Source = 2 // unsupported
+	Source_SOURCE_TELEGRAM    Source = 3 // unsupported
+	Source_SOURCE_REDDIT      Source = 4
 )
 
 // Enum value maps for Source.
@@ -38,12 +39,14 @@ var (
 		1: "SOURCE_X_TWITTER",
 		2: "SOURCE_FACEBOOK",
 		3: "SOURCE_TELEGRAM",
+		4: "SOURCE_REDDIT",
 	}
 	Source_value = map[string]int32{
 		"SOURCE_UNSPECIFIED": 0,
 		"SOURCE_X_TWITTER":   1,
 		"SOURCE_FACEBOOK":    2,
 		"SOURCE_TELEGRAM":    3,
+		"SOURCE_REDDIT":      4,
 	}
 )
 
@@ -83,6 +86,7 @@ type Post struct {
 	Author        *User                  `protobuf:"bytes,5,opt,name=author,proto3" json:"author,omitempty"`
 	Attachments   []*Media               `protobuf:"bytes,6,rep,name=attachments,proto3" json:"attachments,omitempty"`
 	Stats         *Stats                 `protobuf:"bytes,7,opt,name=stats,proto3" json:"stats,omitempty"`
+	Title         string                 `protobuf:"bytes,8,opt,name=title,proto3" json:"title,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -164,6 +168,13 @@ func (x *Post) GetStats() *Stats {
 		return x.Stats
 	}
 	return nil
+}
+
+func (x *Post) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
 }
 
 type Media struct {
@@ -358,7 +369,7 @@ var File_api_social_network_v1_social_network_proto protoreflect.FileDescriptor
 
 const file_api_social_network_v1_social_network_proto_rawDesc = "" +
 	"\n" +
-	"*api/social_network/v1/social_network.proto\x12\x11social_network.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb2\x02\n" +
+	"*api/social_network/v1/social_network.proto\x12\x11social_network.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc8\x02\n" +
 	"\x04Post\x121\n" +
 	"\x06source\x18\x01 \x01(\x0e2\x19.social_network.v1.SourceR\x06source\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\x12\x10\n" +
@@ -366,7 +377,8 @@ const file_api_social_network_v1_social_network_proto_rawDesc = "" +
 	"\x04date\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12/\n" +
 	"\x06author\x18\x05 \x01(\v2\x17.social_network.v1.UserR\x06author\x12:\n" +
 	"\vattachments\x18\x06 \x03(\v2\x18.social_network.v1.MediaR\vattachments\x12.\n" +
-	"\x05stats\x18\a \x01(\v2\x18.social_network.v1.StatsR\x05stats\"S\n" +
+	"\x05stats\x18\a \x01(\v2\x18.social_network.v1.StatsR\x05stats\x12\x14\n" +
+	"\x05title\x18\b \x01(\tR\x05title\"S\n" +
 	"\x05Media\x12\x1b\n" +
 	"\tfile_name\x18\x01 \x01(\tR\bfileName\x12\x10\n" +
 	"\x03url\x18\x02 \x01(\tR\x03url\x12\x1b\n" +
@@ -379,12 +391,13 @@ const file_api_social_network_v1_social_network_proto_rawDesc = "" +
 	"\x05Stats\x12\x14\n" +
 	"\x05likes\x18\x01 \x01(\x03R\x05likes\x12\x1a\n" +
 	"\bcomments\x18\x02 \x01(\x03R\bcomments\x12\x14\n" +
-	"\x05views\x18\x03 \x01(\x03R\x05views*`\n" +
+	"\x05views\x18\x03 \x01(\x03R\x05views*s\n" +
 	"\x06Source\x12\x16\n" +
 	"\x12SOURCE_UNSPECIFIED\x10\x00\x12\x14\n" +
 	"\x10SOURCE_X_TWITTER\x10\x01\x12\x13\n" +
 	"\x0fSOURCE_FACEBOOK\x10\x02\x12\x13\n" +
-	"\x0fSOURCE_TELEGRAM\x10\x03B1Z/Acuity/gen/api/social_network/v1;social_networkb\x06proto3"
+	"\x0fSOURCE_TELEGRAM\x10\x03\x12\x11\n" +
+	"\rSOURCE_REDDIT\x10\x04B1Z/Acuity/gen/api/social_network/v1;social_networkb\x06proto3"
 
 var (
 	file_api_social_network_v1_social_network_proto_rawDescOnce sync.Once
